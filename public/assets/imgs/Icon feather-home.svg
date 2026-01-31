@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.4" height="20.222" viewBox="0 0 18.4 20.222">
+    <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
+        <path id="Path_27" data-name="Path 27"
+              d="M4.5,9.378,12.7,3l8.2,6.378V19.4a1.822,1.822,0,0,1-1.822,1.822H6.322A1.822,1.822,0,0,1,4.5,19.4Z"
+              fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path id="Path_28" data-name="Path 28" d="M13.5,27.111V18h5.467v9.111" transform="translate(-3.533 -5.889)"
+              fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+</svg>
