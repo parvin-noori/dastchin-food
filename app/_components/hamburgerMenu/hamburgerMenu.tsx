@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { TbMenuDeep } from "react-icons/tb";
+import { MenuItem } from "./types";
 
-const firstMenu = [
+const firstMenu: MenuItem[] = [
   {
     title: "پرطرفدارها",
   },
@@ -17,32 +18,32 @@ const firstMenu = [
   },
 ];
 
-const secondMenu=[
+const secondMenu: MenuItem[] = [
   {
-    title:"صفحه اصلی"
+    title: "صفحه اصلی",
   },
   {
-    title:"منو"
+    title: "منو",
   },
   {
-    title:"گالری"
+    title: "گالری",
   },
   {
-    title:"درباره ما"
+    title: "درباره ما",
   },
   {
-    title:"تماس با ما"  
-  }
-]
+    title: "تماس با ما",
+  },
+];
 
 export default function HamburgerMenu() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
-  const toggleCollapsed = () => {
+  const toggleCollapsed = ():void => {
     setCollapsed(!collapsed);
   };
 
-  const closeCollapsed = () => {
+  const closeCollapsed = ():void => {
     setCollapsed(false);
   };
   return (
@@ -70,7 +71,10 @@ export default function HamburgerMenu() {
         <div className="py-7">
           <ul className="flex flex-col gap-y-4">
             {firstMenu.map((item, index) => (
-              <li key={index} className="cursor-pointer font-semibold hover:text-primary duration-300">
+              <li
+                key={index}
+                className="cursor-pointer font-semibold hover:text-primary duration-300"
+              >
                 {item.title}
               </li>
             ))}
@@ -79,7 +83,10 @@ export default function HamburgerMenu() {
         <div className="py-7">
           <ul className="flex flex-col gap-y-4">
             {secondMenu.map((item, index) => (
-              <li key={index} className="cursor-pointer font-semibold hover:text-primary duration-300">
+              <li
+                key={index}
+                className="cursor-pointer font-semibold hover:text-primary duration-300"
+              >
                 {item.title}
               </li>
             ))}
