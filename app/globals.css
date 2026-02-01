@@ -1,2 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #ee384e;
+}
+
+.container {
+  @apply mx-auto px-4 lg:px-0;
+}
+
+p {
+  @apply text-gray-400;
+}
