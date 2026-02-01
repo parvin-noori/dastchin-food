@@ -1,6 +1,9 @@
+import Home from "./(home)/home";
 
-export default function Home() {
+export const revalidate = 300;
+
+export default function Page() {
   return (
-    <span>dastchin</span>
+   <Home/>
   );
 }
