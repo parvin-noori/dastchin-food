@@ -18,10 +18,10 @@ export default function Slider({ slides }: sliderProps) {
           <Link href={slide.link ?? "#"} className="h-full">
             <Image
               width={800}
-              height={100}
+              height={400}
               src={slide.image_url}
               alt={slide.title ?? "image slide"}
-              className="w-full rounded-2xl lg:h-160 md:h-100 h-full object-cover"
+              className="w-full rounded-2xl h-full object-cover"
             />
           </Link>
         </SwiperSlide>
