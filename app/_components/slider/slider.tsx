@@ -1,31 +1,31 @@
 "use client";
+
+import Image from "next/image";
+import Link from "next/link";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { sliderItem } from "./slider.types";
 
-export default function Slider() {
+type sliderProps = {
+  slides: sliderItem[];
+};
+
+export default function Slider({ slides }: sliderProps) {
   return (
     <Swiper spaceBetween={50} slidesPerView={1}>
-      <SwiperSlide>
-        <img
-          src="/assets/imgs/slider/slider_1.jpg"
-          alt="slider image 1"
-          className="w-full h-auto rounded-2xl"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="/assets/imgs/slider/slider_2.jpg"
-          alt="slider image 2"
-          className="w-full h-auto rounded-2xl"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="/assets/imgs/slider/slider_3.jpg"
-          alt="slider image 3"
-          className="w-full h-auto rounded-2xl"
-        />
-      </SwiperSlide>
+      {slides.map((slide) => (
+        <SwiperSlide key={slide.id} className="h-auto">
+          <Link href={slide.link ?? "#"} className="h-full">
+            <Image
+              width={800}
+              height={100}
+              src={slide.image_url}
+              alt={slide.title ?? "image slide"}
+              className="w-full rounded-2xl lg:h-160 md:h-100 h-full object-cover"
+            />
+          </Link>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
