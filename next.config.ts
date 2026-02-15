@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-   images: {
-       domains: ["biyopos.com","encrypted-tbn0.gstatic.com","www.shutterstock.com","static01.nyt.com"], 
+  images: {
+    remotePatterns: [
+      { hostname: "biyopos.com" },
+      { hostname: "encrypted-tbn0.gstatic.com" },
+      { hostname: "www.shutterstock.com" },
+      { hostname: "static01.nyt.com" },
+    ],
   },
 };
 
