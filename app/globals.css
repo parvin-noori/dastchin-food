@@ -11,3 +11,7 @@
 p {
   @apply text-gray-400;
 }
+
+.swiper-pagination-bullet-active {
+  background-color: black!important;
+}

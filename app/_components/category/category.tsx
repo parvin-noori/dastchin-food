@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import "swiper/css";
+import "swiper/css/pagination";
+
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import { categoryItem } from "./category.types";
 
 type categoryProps = {
@@ -19,23 +23,29 @@ export default function Category(props: categoryProps) {
   };
   return (
     <Swiper
+      className="w-full !pb-12"
       spaceBetween={20}
       loop={true}
+      modules={[Pagination]}
+      pagination={{ clickable: true }}
       breakpoints={{
         320: {
           slidesPerView: 4,
+          slidesPerGroup: 4,
         },
         640: {
           slidesPerView: 4,
+          slidesPerGroup: 4,
         },
         1024: {
           slidesPerView: 6,
+          slidesPerGroup: 6,
         },
         1280: {
           slidesPerView: 8,
+          slidesPerGroup: 8,
         },
       }}
-      className="w-full"
     >
       {categories.map((item) => (
         <SwiperSlide
