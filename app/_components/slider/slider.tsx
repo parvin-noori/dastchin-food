@@ -14,10 +14,10 @@ export default function Slider({ slides }: sliderProps) {
   return (
     <Swiper spaceBetween={50} slidesPerView={1}>
       {slides.map((slide) => (
-        <SwiperSlide key={slide.id} className="h-auto">
+        <SwiperSlide key={slide.id} className="!h-auto">
           <Link href={slide.link ?? "#"} className="h-full">
             <Image
-              width={800}
+              width={1200}
               height={400}
               src={slide.image_url}
               alt={slide.title ?? "image slide"}

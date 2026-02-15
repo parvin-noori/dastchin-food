@@ -18,3 +18,11 @@ export const getCategories = async () => {
   }
   return data;
 };
+export const getBanners = async () => {
+  const { data, error } = await supabase.from("banner").select("*");
+  if (error) {
+    console.log("Error fetching category data:", error);
+    return [];
+  }
+  return data;
+};

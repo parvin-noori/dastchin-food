@@ -1,19 +1,19 @@
 import Image from "next/image";
-import { bannerItem } from "./banner.types";
+import { sliderItem } from "../slider/slider.types";
 
-const bannsers: bannerItem[] = [
-  { title: "irani food", url: "/assets/imgs/website_image_irani_1.jpg" },
-  { title: "irani food", url: "/assets/imgs/website_image_pizza_1.jpg" },
-];
-export default function Banner() {
+type bannerProps = {
+  banners: sliderItem[];
+};
+
+export default function Banner({ banners }: bannerProps) {
   return (
     <>
-      {bannsers.map((banner, index) => (
+      {banners.map((banner, index) => (
         <div className="col-span-6" key={index}>
           <Image
             className="w-full rounded-2xl"
-            src={banner.url}
-            alt={banner.title}
+            src={banner.image_url}
+            alt={banner.title ?? "image slide"}
             width={400}
             height={350}
           />
