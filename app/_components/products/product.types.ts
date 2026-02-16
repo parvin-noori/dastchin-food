@@ -7,3 +7,13 @@ export interface ProductItem {
   is_new?: boolean;
   is_popular: boolean;
 }
+
+export interface ProductReview {
+  id: number;
+  product_id: number;
+  parent_id: number | null;
+  username: string;
+  rating?: number;
+  comment: string;
+  created_at?: string;
+}

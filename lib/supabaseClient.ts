@@ -36,3 +36,12 @@ export const getProducts = async () => {
   }
   return data;
 };
+
+export const getProductReviews = async () => {
+  const { data, error } = await supabase.from("product_reviews").select("*");
+  if (error) {
+    console.log("Error fetching category data:", error);
+    return [];
+  }
+  return data;
+};

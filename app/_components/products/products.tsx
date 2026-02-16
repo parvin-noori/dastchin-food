@@ -1,17 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ProductModal from "./Modal";
 import Product from "./product";
-import { ProductItem } from "./product.types";
+import { ProductItem, ProductReview } from "./product.types";
 
 type ProductsProps = {
   products: ProductItem[];
+  reviews:ProductReview[];
   title: string;
 };
 
-export default function Products({ products, title }: ProductsProps) {
+export default function Products({ products, title ,reviews}: ProductsProps) {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(
+    null,
+  );
+
+  const openModal = (product: ProductItem) => {
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  const closeModal = (): void => {
+    setShowModal(false);
+    setSelectedProduct(null);
+  };
+
   return (
     <>
       <div className="flex items-center justify-between py-10">
@@ -41,14 +59,22 @@ export default function Products({ products, title }: ProductsProps) {
         }}
       >
         {products.map((item) => (
-          <SwiperSlide
-            key={item.id}
-            className="!h-auto"
-          >
-            <Product product={item} />
+          <SwiperSlide key={item.id} className="!h-auto">
+            <Product product={item} openModal={openModal} />
           </SwiperSlide>
         ))}
       </Swiper>
+      {showModal && selectedProduct && (
+        <ProductModal product={selectedProduct} reviews={reviews} closeModal={closeModal}/>
+      )}
+      {showModal && (
+        <>
+          <div
+            className="overlay bg-black/80 fixed inset-0 z-10"
+            onClick={closeModal}
+          ></div>
+        </>
+      )}
     </>
   );
 }
