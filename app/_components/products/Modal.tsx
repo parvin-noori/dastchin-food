@@ -46,7 +46,7 @@ export default function ProductModal({
                 {discountedPrice.toLocaleString()}
               </span>
             </div>
-            <button className="bg-primary text-white rounded-xl size-7 grid place-content-center">
+            <button className="bg-primary cursor-pointer text-white rounded-xl size-7 grid place-content-center">
               <FaPlus />
             </button>
           </div>
