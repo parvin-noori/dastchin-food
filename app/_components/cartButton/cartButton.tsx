@@ -2,7 +2,6 @@
 
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
@@ -22,6 +21,7 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
   };
 
   const cartItems = useCartStore((state) => state.items);
+  const totalPrice = useCartStore((state) => state.totalPrice(products));
   const detailedCart: DetailedCartItem[] = cartItems.map((cartItem) => {
     const product = products.find((item) => item.id === cartItem.productId);
 
@@ -43,14 +43,12 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
           <MdClose size={25} />
         </button>
 
-        <ul className="flex flex-col  py-16 divide-y divide-gray-200">
+        <ul className="flex flex-col h-[80%] overflow-y-auto py-16 divide-y divide-gray-200">
           {detailedCart.map((item) => {
             const discountedPrice = item.price * (1 - item.discount / 100);
 
             return (
-              <li
-                className="flex items-center gap-x-3 hover:bg-gray-200 p-5 transition-all duration-300"
-              >
+              <li className="flex items-center gap-x-3 hover:bg-gray-200 p-5 transition-all duration-300">
                 <Image
                   src={item.image_url}
                   width={100}
@@ -87,6 +85,14 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
             );
           })}
         </ul>
+        <div className="fixed bottom-0 w-full p-1 space-y-1">
+          <div className="rounded-lg bg-primary text-white p-3 text-center">
+            {totalPrice.toLocaleString()} تومان 
+          </div>
+          <button  className="rounded-lg cursor-pointer border border-primary text-primary w-full p-2 text-center hover:bg-primary hover:text-white transition-all duration-300">
+           پرداخت نهایی
+          </button>
+        </div>
       </div>
       {collapsed && (
         <div
