@@ -1,3 +1,4 @@
 export type MenuItem={
-    title:string
+    title:string;
+    href:string;
 }

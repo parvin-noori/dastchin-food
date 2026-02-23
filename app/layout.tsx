@@ -1,12 +1,14 @@
+import { getProducts } from "@/lib/supabaseClient";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
-import Header from "./_components/header";
 import Footer from "./_components/footer";
+import Header from "./_components/header";
+import { ProductItem } from "./_components/products/product.types";
 import "./globals.css";
 
 const vazir = Vazirmatn({
   subsets: ["arabic", "latin"],
-  weight: ["300", "400","700"],
+  weight: ["300", "400", "700"],
   variable: "--font-vazirmatn",
 });
 
@@ -25,17 +27,18 @@ export const metadata: Metadata = {
   description: "dastchin food",
 };
 
-export default function RootLayout({
+export default  function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="fa" dir="rtl">
       <body className={`${vazir.className}  antialiased bg-gray-100`}>
-        <Header/>
+        <Header />
         <div className="container mx-auto">{children}</div>
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

@@ -1,15 +1,13 @@
+import { getProducts } from "@/lib/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
-import { FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { TbCurrentLocation } from "react-icons/tb";
+import CartButton from "../cartButton";
 import HamburgerMenu from "../hamburgerMenu";
 
 const headerButtons = [
-  {
-    display: "all",
-    icon: <FiShoppingCart size={23} />,
-  },
   {
     display: "lg",
     icon: <IoNotificationsOutline size={25} />,
@@ -20,7 +18,8 @@ const headerButtons = [
   },
 ];
 
-export default function Header() {
+export default async function Header() {
+  const products = await getProducts();
   return (
     <>
       <div className="bg-white py-5 w-full rounded-b-2xl">
@@ -48,6 +47,7 @@ export default function Header() {
             </button>
           </div>
           <div className="ms-auto flex items-center gap-x-5">
+            <CartButton products={products} />
             {headerButtons.map((button, index) => (
               <button
                 key={index}

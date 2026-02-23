@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { TbMenuDeep } from "react-icons/tb";
@@ -9,41 +10,49 @@ import { MenuItem } from "./types";
 const firstMenu: MenuItem[] = [
   {
     title: "پرطرفدارها",
+    href: "/",
   },
   {
     title: "تخفیفات",
+    href: "/",
   },
   {
     title: "سوالی دارید؟",
+    href: "/",
   },
 ];
 
 const secondMenu: MenuItem[] = [
   {
     title: "صفحه اصلی",
+    href: "/",
   },
   {
     title: "منو",
+    href: "/",
   },
   {
     title: "گالری",
+    href: "/",
   },
   {
     title: "درباره ما",
+    href: "/",
   },
   {
     title: "تماس با ما",
+    href: "/",
   },
 ];
 
 export default function HamburgerMenu() {
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
-  const toggleCollapsed = ():void => {
+  const toggleCollapsed = (): void => {
     setCollapsed(!collapsed);
   };
 
-  const closeCollapsed = ():void => {
+  const closeCollapsed = (): void => {
     setCollapsed(false);
   };
   return (
@@ -83,12 +92,13 @@ export default function HamburgerMenu() {
         <div className="py-7">
           <ul className="flex flex-col gap-y-4">
             {secondMenu.map((item, index) => (
-              <li
+              <Link
+                href={item.href}
                 key={index}
                 className="cursor-pointer font-semibold hover:text-primary duration-300"
               >
                 {item.title}
-              </li>
+              </Link>
             ))}
           </ul>
         </div>

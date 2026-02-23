@@ -1,7 +1,8 @@
 "use client";
 
+import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
-import { FaPlus } from "react-icons/fa6";
+import ProductButton from "../productButton/productButton";
 import { ProductItem } from "./product.types";
 
 type ProductsProps = {
@@ -11,7 +12,10 @@ type ProductsProps = {
 };
 
 export default function Product({ product, openModal }: ProductsProps) {
-  const discountedPrice = product.price * (1 - 5 / 100);
+  const discountedPrice = product.price * (1 - product.discount / 100);
+  const cartItems = useCartStore((state) => state.items);
+  const productInCart = cartItems.find((item) => item.productId === product.id);
+  const productQuantity = productInCart ? productInCart.quantity : 0;
 
   //     const toggleCollapsed = ():void => {
   //     setCollapsed(!collapsed);
@@ -28,22 +32,27 @@ export default function Product({ product, openModal }: ProductsProps) {
           className="aspect-square drop-shadow-xl group-hover:rotate-10 transition-all duration-500 absolute top-0 -translate-y-1/2 translate-x-1/2 start-1/2 w-2/3"
         />
         <div className="flex flex-col space-y-2 mt-22">
-          <div className="flex flex-col space-y-2 cursor-pointer" onClick={() => openModal(product)}>
+          <div
+            className="flex flex-col space-y-2 cursor-pointer"
+            onClick={() => openModal(product)}
+          >
             <span className="text-xl font-semibold">{product.title}</span>
             <p>{product.description}</p>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex space-x-2">
-              <span className="text-red-600 line-through">
+              <span
+                className={`${product.discount > 0 ? "text-red-600 line-through" : "text-green-600"}`}
+              >
                 {product.price.toLocaleString()}
               </span>
-              <span className="text-green-600">
-                {discountedPrice.toLocaleString()}
-              </span>
+              {product.discount > 0 && (
+                <span className="text-green-600">
+                  {discountedPrice.toLocaleString()}
+                </span>
+              )}
             </div>
-            <button className="bg-primary text-white rounded-xl size-7 grid place-content-center cursor-pointer">
-              <FaPlus />
-            </button>
+            <ProductButton quantity={productQuantity} productId={product.id} />
           </div>
         </div>
       </div>

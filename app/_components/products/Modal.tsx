@@ -1,7 +1,8 @@
+import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
-import { FaPlus } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
+import ProductButton from "../productButton/productButton";
 import { ProductItem, ProductReview } from "./product.types";
 import { Reviews } from "./reviews";
 
@@ -20,6 +21,10 @@ export default function ProductModal({
   const productComment = reviews.filter(
     (review) => review.product_id === product.id,
   );
+
+  const cartItems = useCartStore((state) => state.items);
+  const productInCart = cartItems.find((item) => item.productId === product.id);
+  const productQuantity = productInCart ? productInCart.quantity : 0;
 
   return (
     <div className="bg-white rounded-2xl xl:w-1/2 lg:w-8/12 md:w-9/12 w-11/12 p-5 z-30 fixed top-1/2 start-1/2 overflow-hidden translate-x-1/2 -translate-y-1/2 max-h-content">
@@ -46,9 +51,7 @@ export default function ProductModal({
                 {discountedPrice.toLocaleString()}
               </span>
             </div>
-            <button className="bg-primary cursor-pointer text-white rounded-xl size-7 grid place-content-center">
-              <FaPlus />
-            </button>
+            <ProductButton quantity={productQuantity} productId={product.id} />
           </div>
           <div className="space-x-2 flex items-center">
             <TbTruckDelivery size={26} />
