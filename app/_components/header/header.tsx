@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiUser } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { TbCurrentLocation } from "react-icons/tb";
 import CartButton from "../cartButton";
 import HamburgerMenu from "../hamburgerMenu";
+import MapButton from "../map";
 
 const headerButtons = [
   {
@@ -26,10 +26,9 @@ export default async function Header() {
         <div className="container mx-auto grid grid-cols-3 items-center px-5">
           <div className="flex items-center gap-x-5">
             <HamburgerMenu />
-            <button className="lg:flex items-center gap-x-2 hidden">
-              انتخاب آدرس
-              <TbCurrentLocation />
-            </button>
+            <div className="lg:flex hidden">
+              <MapButton />
+            </div>
           </div>
 
           <div className="mx-auto">
@@ -41,10 +40,9 @@ export default async function Header() {
                 height={100}
               />
             </Link>
-            <button className="items-center gap-x-2 lg:hidden flex">
-              انتخاب آدرس
-              <TbCurrentLocation />
-            </button>
+            <div className="lg:hidden">
+              <MapButton />
+            </div>
           </div>
           <div className="ms-auto flex items-center gap-x-5">
             <CartButton products={products} />

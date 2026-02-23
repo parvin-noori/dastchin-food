@@ -57,7 +57,7 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
         </div>
 
         <ul className="flex flex-col h-[80%] overflow-y-auto divide-y divide-gray-200">
-          {detailedCart.map((item) => {
+          {detailedCart?.map((item) => {
             const discountedPrice = item.price * (1 - item.discount / 100);
 
             return (

@@ -5,6 +5,7 @@ import {
   getProducts,
   getSlides,
 } from "@/lib/supabaseClient";
+import { Suspense } from "react";
 import Banner from "../_components/banner";
 import Category from "../_components/category";
 import { categoryItem } from "../_components/category/category.types";
@@ -28,7 +29,9 @@ export default async function Home() {
     <div className="py-5 md:gap-5 gap-3 flex flex-col overflow-x-hidden">
       <div className="grid grid-cols-12 md:gap-5 gap-3">
         <div className="col-span-12">
-          <Slider slides={slides} />
+          <Suspense fallback={<div>loading slider</div>}>
+            <Slider slides={slides} />
+          </Suspense>
         </div>
         <Banner banners={banners} />
       </div>
