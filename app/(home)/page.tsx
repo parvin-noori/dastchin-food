@@ -25,8 +25,8 @@ export default async function Home() {
   const popularProducts = products.filter((p) => p.is_popular);
   const newProducts = products.filter((p) => p.is_new);
   return (
-    <div className="py-5 gap-5 flex flex-col overflow-x-hidden">
-      <div className="grid grid-cols-12 gap-5" >
+    <div className="py-5 md:gap-5 gap-3 flex flex-col overflow-x-hidden">
+      <div className="grid grid-cols-12 md:gap-5 gap-3">
         <div className="col-span-12">
           <Slider slides={slides} />
         </div>

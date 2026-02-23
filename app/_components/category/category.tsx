@@ -24,26 +24,30 @@ export default function Category(props: categoryProps) {
   return (
     <Swiper
       className="w-full !pb-12"
-      spaceBetween={20}
       loop={true}
       modules={[Pagination]}
+      spaceBetween={10}
       pagination={{ clickable: true }}
       breakpoints={{
         320: {
           slidesPerView: 4,
           slidesPerGroup: 4,
+          spaceBetween: 10,
         },
         640: {
           slidesPerView: 4,
           slidesPerGroup: 4,
+          spaceBetween: 20,
         },
         1024: {
           slidesPerView: 6,
           slidesPerGroup: 6,
+          spaceBetween: 20,
         },
         1280: {
           slidesPerView: 8,
           slidesPerGroup: 8,
+          spaceBetween: 20,
         },
       }}
     >

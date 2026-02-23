@@ -32,11 +32,11 @@ export default function Products({ products, title ,reviews}: ProductsProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between py-10">
+      <div className="flex items-center justify-between md:py-10 py-5">
         <span className="text-2xl font-bold">{title}</span>
       </div>
       <Swiper
-        className="w-full !py-20 !overflow-visible"
+        className="w-full md:!py-20 !pt-24 !overflow-visible"
         spaceBetween={20}
         loop={true}
         breakpoints={{
