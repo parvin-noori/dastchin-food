@@ -29,7 +29,7 @@ export default function Product({ product, openModal }: ProductsProps) {
           height={500}
           src={product.image_url}
           alt={product.title}
-          className="aspect-square drop-shadow-xl group-hover:rotate-10 transition-all duration-500 absolute top-0 -translate-y-1/2 translate-x-1/2 start-1/2 w-2/3"
+          className="aspect-square drop-shadow-xl group-hover:rotate-10 transition-all duration-500 absolute top-0 -translate-y-1/2 translate-x-1/2 start-1/2 md:w-2/3 w-1/2"
         />
         <div className="flex flex-col space-y-2 mt-22">
           <div
