@@ -51,7 +51,11 @@ export default function ProductModal({
                 {discountedPrice.toLocaleString()}
               </span>
             </div>
-            <ProductButton quantity={productQuantity} productId={product.id} />
+            <ProductButton
+              quantity={productQuantity}
+              productId={product.id}
+              stock={product.stock}
+            />
           </div>
           <div className="space-x-2 flex items-center">
             <TbTruckDelivery size={26} />

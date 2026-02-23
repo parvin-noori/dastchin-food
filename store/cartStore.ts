@@ -1,4 +1,5 @@
 import { ProductItem } from "@/app/_components/products/product.types";
+import { toast } from "react-toastify";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -9,7 +10,7 @@ interface CartItem {
 
 interface CartStore {
   items: CartItem[];
-  addToCart: (productId: number) => void;
+  addToCart: (productId: number, stock: number) => void;
   decreaseQuantity: (productId: number) => void;
   removeFromCart: (productId: number) => void;
   clearCard: () => void;
@@ -22,17 +23,23 @@ export const useCartStore = create<CartStore>()(
     (set, get) => ({
       items: [],
 
-      addToCart: (productId) => {
+      addToCart: (productId, stock) => {
         const items = [...get().items];
         const existing = items.find((item) => item.productId === productId);
 
         if (existing) {
-          //   if (existing.quantity < stock) {
-          existing.quantity += 1;
-          //   }
+          if (existing.quantity < stock) {
+            existing.quantity += 1;
+          } else {
+            toast.error("موجودی این محصول تمام شده!");
+          }
         } else {
-          //   if (stock > 0)
-          items.push({ productId, quantity: 1 });
+          if (stock > 0) {
+            items.push({ productId, quantity: 1 });
+            toast.success("محصول با موفقیت به سبد خرید اضافه شد");
+          } else {
+            toast.error("موجودی محصول تمام شده!");
+          }
         }
         set({ items });
       },
@@ -46,6 +53,8 @@ export const useCartStore = create<CartStore>()(
         } else {
           const filtered = items.filter((item) => item.productId !== productId);
           set({ items: filtered });
+          toast.error("محصول با موفقیت از سبد خرید حذف شد");
+
           return;
         }
         set({ items });

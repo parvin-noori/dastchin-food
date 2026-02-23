@@ -1,9 +1,8 @@
-import { getProducts } from "@/lib/supabaseClient";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 import Footer from "./_components/footer";
 import Header from "./_components/header";
-import { ProductItem } from "./_components/products/product.types";
 import "./globals.css";
 
 const vazir = Vazirmatn({
@@ -27,15 +26,15 @@ export const metadata: Metadata = {
   description: "dastchin food",
 };
 
-export default  function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="fa" dir="rtl">
       <body className={`${vazir.className}  antialiased bg-gray-100`}>
+        <ToastContainer autoClose={8000} closeButton={false} />
         <Header />
         <div className="container mx-auto">{children}</div>
         <Footer />

@@ -52,7 +52,11 @@ export default function Product({ product, openModal }: ProductsProps) {
                 </span>
               )}
             </div>
-            <ProductButton quantity={productQuantity} productId={product.id} />
+            <ProductButton
+              quantity={productQuantity}
+              productId={product.id}
+              stock={product.stock}
+            />
           </div>
         </div>
       </div>

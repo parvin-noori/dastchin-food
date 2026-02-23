@@ -6,7 +6,8 @@ export interface ProductItem {
   title: string;
   is_new?: boolean;
   is_popular?: boolean;
-  discount:number
+  discount:number;
+  stock:number
 }
 
 export interface ProductReview {

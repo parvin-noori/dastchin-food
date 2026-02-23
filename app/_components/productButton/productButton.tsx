@@ -6,11 +6,13 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 type ProductButtonProps = {
   quantity: number;
   productId: number;
+  stock:number
 };
 
 export default function ProductButton({
   quantity,
   productId,
+  stock
 }: ProductButtonProps) {
   const decreaseProduct = useCartStore((state) => state.decreaseQuantity);
   const addToCart = useCartStore((state) => state.addToCart);
@@ -28,7 +30,7 @@ export default function ProductButton({
             readOnly
           />
           <button
-            onClick={() => addToCart(productId)}
+            onClick={() => addToCart(productId,stock)}
             className="bg-primary text-white rounded-xl size-7 grid place-content-center cursor-pointer"
           >
             <FaPlus />
@@ -36,7 +38,7 @@ export default function ProductButton({
         </div>
       ) : (
         <button
-          onClick={() => addToCart(productId)}
+          onClick={() => addToCart(productId,stock)}
           className="bg-primary text-white rounded-xl size-7 grid place-content-center cursor-pointer"
         >
           <FaPlus />
