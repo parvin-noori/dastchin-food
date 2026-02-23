@@ -25,11 +25,14 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
   const totalPrice = useCartStore((state) => state.totalPrice(products));
   const cartQuantity = useCartStore((state) => state.totalQuantity());
   const clearCart = useCartStore((state) => state.clearCard);
-  const detailedCart: DetailedCartItem[] = cartItems.map((cartItem) => {
-    const product = products.find((item) => item.id === cartItem.productId);
+  const detailedCart: DetailedCartItem[] = cartItems
+    .map((cartItem) => {
+      const product = products.find((item) => item.id === cartItem.productId);
+      if (!product) return null;
 
-    return { ...product, quantity: cartItem.quantity };
-  });
+      return { ...product, quantity: cartItem.quantity };
+    })
+    .filter((item): item is DetailedCartItem => item !== null);
 
   return (
     <>
@@ -61,7 +64,10 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
             const discountedPrice = item.price * (1 - item.discount / 100);
 
             return (
-              <li className="flex items-center gap-x-3 hover:bg-gray-200 p-5 transition-all duration-300">
+              <li
+                key={item.id}
+                className="flex items-center gap-x-3 hover:bg-gray-200 p-5 transition-all duration-300"
+              >
                 <Image
                   src={item.image_url}
                   width={100}
@@ -91,6 +97,7 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
                     <ProductButton
                       quantity={item.quantity}
                       productId={item.id}
+                      stock={item.stock}
                     />
                   </div>
                 </div>
