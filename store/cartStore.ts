@@ -63,7 +63,10 @@ export const useCartStore = create<CartStore>()(
         const filtered = get().items.filter((i) => i.productId !== productId);
         set({ items: filtered });
       },
-      clearCard: () => set({ items: [] }),
+      clearCard: () => {
+        (set({ items: [] }),
+          toast.success("خالی شدن سبد خرید"));
+      },
       totalQuantity: () => {
         return get().items.reduce((sum, i) => sum + i.quantity, 0);
       },
