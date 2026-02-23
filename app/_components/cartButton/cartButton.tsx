@@ -25,14 +25,11 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
   const totalPrice = useCartStore((state) => state.totalPrice(products));
   const cartQuantity = useCartStore((state) => state.totalQuantity());
   const clearCart = useCartStore((state) => state.clearCard);
-  const detailedCart: DetailedCartItem[] = cartItems
-    .map((cartItem) => {
-      const product = products.find((item) => item.id === cartItem.productId);
-      if (!product) return null;
+  const detailedCart: DetailedCartItem[] = cartItems.map((cartItem) => {
+    const product = products.find((item) => item.id === cartItem.productId)!;
 
-      return { ...product, quantity: cartItem.quantity };
-    })
-    .filter((item): item is DetailedCartItem => item !== null);
+    return { ...product, quantity: cartItem.quantity };
+  });
 
   return (
     <>
