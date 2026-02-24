@@ -36,9 +36,9 @@ export default function MapModal({ closeModal }: MapModalProps) {
           </button>
         </>
       )}
-      {step===2 && (
+      {/* {step===2 && (
         
-      )}
+      )} */}
     </div>
   );
 }
