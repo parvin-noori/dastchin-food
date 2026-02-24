@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import CustomMap from "./Map";
 import { mapData } from "./map.types";
 
 type MapModalProps = {
@@ -22,6 +23,7 @@ export default function MapModal({ closeModal }: MapModalProps) {
   const handleSubmit = (mapData: mapData) => {
     console.log(mapData);
   };
+
   return (
     <div className="bg-white rounded-2xl xl:w-1/2 lg:w-8/12 md:w-9/12 w-11/12 p-5 z-30 fixed top-1/2 start-1/2 overflow-hidden translate-x-1/2 -translate-y-1/2 max-h-content flex flex-col gap-y-3 h-96">
       <button className="cursor-pointer ms-auto" onClick={closeModal}>
@@ -31,14 +33,15 @@ export default function MapModal({ closeModal }: MapModalProps) {
         <>
           <span className="text-3xl font-bold">انتخاب آدرس</span>
           <p>برای مشاهده مناسب ترین پیشنهادها ابتدا موقعیتتان را مشخص کنید.</p>
-          <button className="bg-primary text-white rounded-lg me-auto py-2 px-4 cursor-pointer hover:contrast-80 mt-auto">
+          <button
+            onClick={nextStep}
+            className="bg-primary text-white rounded-lg me-auto py-2 px-4 cursor-pointer hover:contrast-80 mt-auto"
+          >
             ساخت آدرس جدید
           </button>
         </>
       )}
-      {/* {step===2 && (
-        
-      )} */}
+      {step === 2 && <CustomMap />}
     </div>
   );
 }
