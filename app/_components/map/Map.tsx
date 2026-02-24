@@ -1,3 +1,5 @@
+"use client"
+
 import NeshanMap from "@neshan-maps-platform/react-openlayers";
 
 export default function CustomMap() {
