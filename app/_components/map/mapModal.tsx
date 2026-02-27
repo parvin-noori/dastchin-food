@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
-import CustomMap from "./Map";
 import { mapData } from "./map.types";
+import dynamic from "next/dynamic";
+
+const CustomMap = dynamic(() => import("./Map"), { ssr: false });
 
 type MapModalProps = {
   closeModal: () => void;
