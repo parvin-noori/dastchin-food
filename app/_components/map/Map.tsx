@@ -76,7 +76,7 @@ export default function CustomMap() {
     <>
       <input
         // defaultValue={location ?? ""}
-        className="w-full"
+        className="border border-gray-300 rounded-lg w-full p-2"
         ref={inputRef}
         type="text"
       />
