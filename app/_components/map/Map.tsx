@@ -1,49 +1,39 @@
 "use client";
 
-import { useEffect } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import L, { LatLngTuple } from "leaflet";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+
+let DefaultIcon = L.icon({
+  iconUrl: icon.src,
+  shadowUrl: iconShadow.src,
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function CustomMap() {
-  function ResizeMap() {
-    const map = useMap();
+  const position: LatLngTuple = [36.307706, 59.672495];
 
-    useEffect(() => {
-      setTimeout(() => {
-        map.invalidateSize();
-      }, 100);
-    }, [map]);
-
-    return null;
-  }
   return (
-    // <NeshanMap
-    //   mapKey="web.3a9b0b3fa3d7401aa946f6f11f09e86e"
-    //   className="size-full"
-    //   center={{ latitude: 36.307706, longitude: 59.672495 }}
-    //   zoom={17}
-    //   poi={true}
-    //   traffic={false}
-    //   //   onInit={handleInit}
-    // ></NeshanMap>
-    <div className="size-full">
+    <>
       <MapContainer
         className="size-full"
-        center={[36.307706, 59.672495]}
+        center={position}
         zoom={16}
         scrollWheelZoom={false}
       >
-        <ResizeMap />
         <TileLayer
-          className="size-full"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[36.307706, 59.672495]}>
+        <Marker position={position}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
       </MapContainer>
-    </div>
+    </>
   );
 }

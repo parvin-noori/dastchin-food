@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@neshan-maps-platform/leaflet": "^1.0.8",
     "@supabase/supabase-js": "^2.93.3",
     "leaflet": "^1.9.4",
     "next": "16.1.6",
