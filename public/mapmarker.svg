@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="224" height="396" viewBox="0 0 224 396">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.1;
+      }
+
+      .cls-2 {
+        fill: #1a1a1a;
+      }
+
+      .cls-3 {
+        fill: #ee384e;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <ellipse class="cls-1" cx="112.641" cy="356.578" rx="39.641" ry="39.641"/>
+  <rect class="cls-2" x="104.719" y="213.844" width="15.875" height="142.75"/>
+  <path id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-3" d="M111.906-.219A111.75,111.75,0,1,1,.156,111.531,111.75,111.75,0,0,1,111.906-.219Zm0,67.375a44.359,44.359,0,1,1-44.344,44.36A44.351,44.351,0,0,1,111.906,67.156Z"/>
+</svg>

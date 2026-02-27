@@ -53,10 +53,21 @@ export default function MapModal({ closeModal }: MapModalProps) {
         </>
       )}
       {step === 2 && isMapReady && (
-        <div className="flex-1 min-h-0 overflow-hidden">
-          <CustomMap />
+        <div className="flex flex-col gap-y-2 flex-1">
+          <div className="flex-1 min-h-0 overflow-hidden">
+            <CustomMap />
+          </div>
+          <div className="flex items-center gap-x-2">
+            <button
+              onClick={nextStep}
+              className="bg-primary text-white rounded-lg me-auto py-2 px-4 cursor-pointer hover:contrast-80 mt-auto"
+            >
+              تایید موقعیت روی نقشه
+            </button>
+          </div>
         </div>
       )}
+      {step === 3 && <span>step 3</span>}
     </div>
   );
 }
