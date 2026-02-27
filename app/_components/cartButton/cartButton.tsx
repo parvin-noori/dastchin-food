@@ -2,7 +2,7 @@
 
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiTrash } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
@@ -25,11 +25,17 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
   const totalPrice = useCartStore((state) => state.totalPrice(products));
   const cartQuantity = useCartStore((state) => state.totalQuantity());
   const clearCart = useCartStore((state) => state.clearCard);
+  const [mounted, setMounted] = useState(false);
   const detailedCart: DetailedCartItem[] = cartItems.map((cartItem) => {
     const product = products.find((item) => item.id === cartItem.productId)!;
 
     return { ...product, quantity: cartItem.quantity };
   });
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <>

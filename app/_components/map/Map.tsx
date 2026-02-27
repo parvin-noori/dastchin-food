@@ -1,56 +1,49 @@
-"use client"
+"use client";
 
-import NeshanMap from "@neshan-maps-platform/react-openlayers";
+import { useEffect } from "react";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
 export default function CustomMap() {
-  //   const handleInit = (map: Map) => {
-  //     map.setMapType("osm-bright");
-  //     map.switchTrafficLayer(true);
-  //     // add Marker to the map
-  //     const marker = new Feature({
-  //       geometry: new Point(
-  //         fromLonLat([59.672495, 36.307706]), // [lng, lat]
-  //       ),
-  //     });
+  function ResizeMap() {
+    const map = useMap();
 
-  //     marker.setStyle(
-  //       new Style({
-  //         image: new Icon({
-  //           anchor: [0.5, 1],
-  //           scale: 0.7,
-  //           src: "/marker.png", // داخل public بذار
-  //         }),
-  //       }),
-  //     );
+    useEffect(() => {
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 100);
+    }, [map]);
 
-  //     const vectorSource = new VectorSource({
-  //       features: [marker],
-  //     });
-
-  //     const vectorLayer = new VectorLayer({
-  //       source: vectorSource,
-  //     });
-
-  //     map.addLayer(vectorLayer);
-  //   };
-
-  //   useEffect(() => {
-  //     if (mapRef.current?.map) {
-  //       mapRef.current?.map.switchTrafficLayer(true);
-  //       mapRef.current?.map.setMapType("standard-night");
-  //     }
-  //   }, []);
-
-  //   const mapRef = useRef<NeshanMapRef | null>(null);
+    return null;
+  }
   return (
-    <NeshanMap
-      mapKey="web.3a9b0b3fa3d7401aa946f6f11f09e86e"
-      className="size-full"
-      center={{ latitude: 36.307706, longitude: 59.672495 }}
-      zoom={17}
-      poi={true}
-      traffic={false}
-      //   onInit={handleInit}
-    ></NeshanMap>
+    // <NeshanMap
+    //   mapKey="web.3a9b0b3fa3d7401aa946f6f11f09e86e"
+    //   className="size-full"
+    //   center={{ latitude: 36.307706, longitude: 59.672495 }}
+    //   zoom={17}
+    //   poi={true}
+    //   traffic={false}
+    //   //   onInit={handleInit}
+    // ></NeshanMap>
+    <div className="size-full">
+      <MapContainer
+        className="size-full"
+        center={[36.307706, 59.672495]}
+        zoom={16}
+        scrollWheelZoom={false}
+      >
+        <ResizeMap />
+        <TileLayer
+          className="size-full"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={[36.307706, 59.672495]}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </MapContainer>
+    </div>
   );
 }

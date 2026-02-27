@@ -1,9 +1,9 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { mapData } from "./map.types";
-import dynamic from "next/dynamic";
 
 const CustomMap = dynamic(() => import("./Map"), { ssr: false });
 
@@ -43,7 +43,11 @@ export default function MapModal({ closeModal }: MapModalProps) {
           </button>
         </>
       )}
-      {step === 2 && <CustomMap />}
+      {step === 2 && (
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <CustomMap />
+        </div>
+      )}
     </div>
   );
 }
