@@ -87,13 +87,13 @@ export default function CartButton({ products }: { products: ProductItem[] }) {
                   <div className="flex space-x-2 items-center">
                     <div className="flex flex-col">
                       <span
-                        className={`${item.discount > 0 ? "text-red-600 line-through" : "text-green-600"}`}
+                        className={`${item?.discount > 0 ? "text-red-600 line-through" : "text-green-600"}`}
                       >
-                        {item.price.toLocaleString()}
+                        {item?.price?.toLocaleString()}
                       </span>
-                      {item.discount > 0 && (
+                      {item?.discount > 0 && (
                         <span className="text-green-600">
-                          {discountedPrice.toLocaleString()}
+                          {discountedPrice?.toLocaleString()}
                         </span>
                       )}
                     </div>

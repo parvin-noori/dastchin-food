@@ -3,22 +3,25 @@
 import axios from "axios";
 import { LatLng } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   MapContainer,
   Marker,
   Popup,
   TileLayer,
+  useMap,
   useMapEvents,
 } from "react-leaflet";
 
 export default function CustomMap() {
-  const [location, setLocation] = useState<null | string>(null);
-
+  const inputRef = useRef<HTMLInputElement>(null);
   function LocationMarker() {
     const [position, setPosition] = useState<null | LatLng>(null);
-    const map = useMapEvents({
+    const map = useMap();
+    const center = map.getCenter();
+
+    useMapEvents({
       // get user location
       locationfound(e) {
         setPosition(e.latlng);
@@ -30,11 +33,9 @@ export default function CustomMap() {
 
       //ReverseGeocoding
       move(e) {
-        const center = map.getCenter();
         setPosition(center);
       },
       moveend() {
-        const center = map.getCenter();
         reverseGeocode(center.lat, center.lng);
       },
     });
@@ -55,8 +56,10 @@ export default function CustomMap() {
           },
         });
 
-        setLocation(data.formatted_address);
-        // console.log("Reverse Result:", result.formatted_address);
+        if (inputRef.current) {
+          inputRef.current.value = data.formatted_address;
+        }
+        console.log("Reverse Result:", data.formatted_address);
       } catch (error) {
         console.error("Reverse Error:", error);
       }
@@ -71,7 +74,12 @@ export default function CustomMap() {
 
   return (
     <>
-      <input defaultValue={location ?? ""} className="w-full" />
+      <input
+        // defaultValue={location ?? ""}
+        className="w-full"
+        ref={inputRef}
+        type="text"
+      />
       <MapContainer
         className="size-full"
         center={{ lat: 36.307706, lng: 59.672495 }}
@@ -83,11 +91,6 @@ export default function CustomMap() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
-        {/* <Marker>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker> */}
       </MapContainer>
     </>
   );
