@@ -3,7 +3,7 @@
 import axios from "axios";
 import { LatLng } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 import {
   MapContainer,
@@ -13,13 +13,22 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
+import { mapData } from "./map.types";
 
-export default function CustomMap() {
+
+
+type CustomMapProps = {
+  setMapData: Dispatch<SetStateAction<mapData>>;
+};
+
+export default function CustomMap({ setMapData }: CustomMapProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const API_KEY = "service.91ad489e6b5d488599ddce8a0db049e0";
+
   function LocationMarker() {
-    const [position, setPosition] = useState<null | LatLng>(null);
     const map = useMap();
     const center = map.getCenter();
+    const [position, setPosition] = useState<null | LatLng>(null);
 
     useMapEvents({
       // get user location
@@ -52,14 +61,14 @@ export default function CustomMap() {
         const { data } = await axios.get(`https://api.neshan.org/v5/reverse`, {
           params: { lat, lng },
           headers: {
-            "Api-Key": "service.91ad489e6b5d488599ddce8a0db049e0",
+            "Api-Key": API_KEY,
           },
         });
 
         if (inputRef.current) {
           inputRef.current.value = data.formatted_address;
+          // setMapData(prev=>({...prev,address:data.formatted_address}))
         }
-        console.log("Reverse Result:", data.formatted_address);
       } catch (error) {
         console.error("Reverse Error:", error);
       }
@@ -72,13 +81,61 @@ export default function CustomMap() {
     );
   }
 
+  // const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
+  //   const map = useMap();
+  //   const center = map.getCenter();
+  //   const value = e.target.value;
+  //   try {
+  //     const { data } = await axios.get(`https://api.neshan.org/v1/search`, {
+  //       params: { term: value, lat: center.lat, lng: center.lng },
+  //       headers: {
+  //         "Api-Key": "service.91ad489e6b5d488599ddce8a0db049e0",
+  //       },
+  //     });
+  //     console.log("Reverse Result:", data);
+  //   } catch (error) {
+  //     console.error("Reverse Error:", error);
+  //   }
+  // };
+
+  // const SearchControl = () => {
+  //   const map = useMap();
+  //   const [search, setSearch] = useState<string>("");
+
+  //   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
+  //     const center = map.getCenter();
+  //     const value = e.target.value;
+  //     try {
+  //       const { data } = await axios.get(`https://api.neshan.org/v1/search`, {
+  //         params: { term: value, lat: center.lat, lng: center.lng },
+  //         headers: {
+  //           "Api-Key": API_key,
+  //         },
+  //       });
+
+  //       console.log("search:", data);
+  //     } catch (error) {
+  //       console.error("Reverse Error:", error);
+  //     }
+  //   };
+
+  //   return (
+  //     <input
+  //       className="border border-gray-300 rounded-lg w-full p-2 bg-white z-[1000] relative"
+  //       ref={inputRef}
+  //       type="text"
+  //       onChange={handleSearch}
+  //     />
+  //   );
+  // };
+
   return (
     <>
       <input
-        // defaultValue={location ?? ""}
         className="border border-gray-300 rounded-lg w-full p-2"
         ref={inputRef}
         type="text"
+        // onChange={handleSearch}
       />
       <MapContainer
         className="size-full"

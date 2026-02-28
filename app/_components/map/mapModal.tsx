@@ -55,7 +55,7 @@ export default function MapModal({ closeModal }: MapModalProps) {
       {step === 2 && isMapReady && (
         <div className="flex flex-col gap-y-2 flex-1">
           <div className="flex-1 min-h-0 overflow-hidden">
-            <CustomMap />
+            <CustomMap setMapData={setMapData}/>
           </div>
           <div className="flex items-center gap-x-2">
             <button
