@@ -43,11 +43,11 @@ export default function Orders() {
                 </span>
               </div>
               <div className="flex items-center ms-auto gap-2">
-                <button className="bg-gray-100 text-gray-700 py-2 gap-1 font-semibold px-3 rounded-lg flex items-center">
+                <button className="bg-gray-100 cursor-pointer text-gray-700 py-2 gap-1 font-semibold px-3 rounded-lg flex items-center">
                   <BsExclamationCircle />
                   مشاهده فاکتور
                 </button>
-                <button className="bg-pink-100 text-pink-700 py-2 gap-1 flex items-center font-semibold px-3 rounded-lg">
+                <button className="bg-pink-100 cursor-pointer text-pink-500 py-2 gap-1 flex items-center font-semibold px-3 rounded-lg">
                   <FaArrowsRotate />
                   سفارش مجدد
                 </button>
