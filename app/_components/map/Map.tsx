@@ -15,8 +15,6 @@ import {
 } from "react-leaflet";
 import { mapData } from "./map.types";
 
-
-
 type CustomMapProps = {
   setMapData: Dispatch<SetStateAction<mapData>>;
 };
@@ -24,10 +22,10 @@ type CustomMapProps = {
 export default function CustomMap({ setMapData }: CustomMapProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const API_KEY = "service.91ad489e6b5d488599ddce8a0db049e0";
+  const [address, setAdress] = useState("");
 
   function LocationMarker() {
     const map = useMap();
-    const center = map.getCenter();
     const [position, setPosition] = useState<null | LatLng>(null);
 
     useMapEvents({
@@ -35,6 +33,7 @@ export default function CustomMap({ setMapData }: CustomMapProps) {
       locationfound(e) {
         setPosition(e.latlng);
         map.flyTo(e.latlng, 16);
+        console.log(e.latlng)
       },
       locationerror(e) {
         console.log("Location access denied:", e.message);
@@ -42,19 +41,24 @@ export default function CustomMap({ setMapData }: CustomMapProps) {
 
       //ReverseGeocoding
       move(e) {
+        const center = map.getCenter();
         setPosition(center);
       },
       moveend() {
+        const center = map.getCenter();
+        setPosition(center);
         reverseGeocode(center.lat, center.lng);
       },
     });
 
-    useEffect(() => {
-      map.locate({
-        setView: false,
-        enableHighAccuracy: true,
-      });
-    }, [map]);
+    
+
+      useEffect(() => {
+        map.locate({
+          setView: false,
+          enableHighAccuracy: true,
+        });
+      }, [map]);
 
     const reverseGeocode = async (lat: number, lng: number) => {
       try {
@@ -65,10 +69,11 @@ export default function CustomMap({ setMapData }: CustomMapProps) {
           },
         });
 
-        if (inputRef.current) {
-          inputRef.current.value = data.formatted_address;
-          // setMapData(prev=>({...prev,address:data.formatted_address}))
-        }
+        // console.log(data.formatted_address);
+        // if (inputRef.current) {
+        setAdress(data.formatted_address);
+        // setMapData(prev=>({...prev,address:data.formatted_address}))
+        // }
       } catch (error) {
         console.error("Reverse Error:", error);
       }
@@ -136,6 +141,7 @@ export default function CustomMap({ setMapData }: CustomMapProps) {
         ref={inputRef}
         type="text"
         // onChange={handleSearch}
+        defaultValue={address}
       />
       <MapContainer
         className="size-full"

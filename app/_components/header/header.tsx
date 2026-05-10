@@ -15,6 +15,7 @@ const headerButtons = [
   {
     display: "lg",
     icon: <FiUser size={25} />,
+    url: "/profile",
   },
 ];
 
@@ -47,14 +48,16 @@ export default async function Header() {
           <div className="ms-auto flex items-center gap-x-5">
             <CartButton products={products} />
             {headerButtons.map((button, index) => (
-              <button
-                key={index}
-                className={`cursor-pointer ${
-                  button.display === "lg" ? "lg:block hidden" : "block"
-                }`}
-              >
-                {button.icon}
-              </button>
+              <Link href={button.url ? button.url : "/"}>
+                <button
+                  key={index}
+                  className={`cursor-pointer ${
+                    button.display === "lg" ? "lg:block hidden" : "block"
+                  }`}
+                >
+                  {button.icon}
+                </button>
+              </Link>
             ))}
           </div>
         </div>
