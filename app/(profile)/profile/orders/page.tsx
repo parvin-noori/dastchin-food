@@ -1,3 +1,5 @@
+"use client"
+
 import { BsExclamationCircle } from "react-icons/bs";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { FiCalendar } from "react-icons/fi";

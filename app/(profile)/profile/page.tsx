@@ -1,3 +1,5 @@
+"use client";
+
 import { FaRegEdit } from "react-icons/fa";
 
 export default async function Profile() {
@@ -17,11 +19,17 @@ export default async function Profile() {
         </div>
       </div>
       <div className="flex flex-col gap-y-3 items-start text-green-600 mt-auto">
-        <button className="gap-x-2 flex items-center">
+        <button
+          type="button"
+          className="gap-x-2 flex items-center cursor-pointer"
+        >
           <FaRegEdit />
           تغییر اطلاعات کاربر
         </button>
-        <button className="gap-x-2 flex items-center">
+        <button
+          type="button"
+          className="gap-x-2 flex items-center cursor-pointer"
+        >
           <FaRegEdit />
           تغییر رمز عبور
         </button>
