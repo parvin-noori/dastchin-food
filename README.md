@@ -12,7 +12,15 @@ A modern food ordering website built with Next.js, React, TypeScript, Tailwind C
 
 ### Home Page
 
-![Dastchin Food Home Page](./screenshots/home-page.png)
+![Dastchin Food Home Page](https://github.com/parvin-noori/dastchin-food/blob/main/public/assets/imgs/home-page.png)
+
+### Product Modal
+
+![Dastchin Food Product Modal](https://github.com/parvin-noori/dastchin-food/blob/main/public/assets/imgs/product.png)
+
+### Cart
+![Dastchin Food Cart](https://github.com/parvin-noori/dastchin-food/blob/main/public/assets/imgs/cart.png)
+
 
 ---
 
