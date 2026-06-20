@@ -26,7 +26,7 @@ export default async function Header() {
       <div className="bg-white py-5 w-full rounded-b-2xl">
         <div className="container mx-auto grid grid-cols-3 items-center px-5">
           <div className="flex items-center gap-x-5">
-            <HamburgerMenu />
+            {/* <HamburgerMenu /> */}
             <div className="lg:flex hidden">
               <MapButton />
             </div>
